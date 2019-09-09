@@ -1,5 +1,8 @@
 class Contact < ApplicationRecord
-  validates :name, presence: true 
+  validates :first_name, presence: true 
+  validates :last_name, presence: true 
+  validates :email, uniqueness: true
+  validates_format_of :email, with: /\A(\w|[.])+[@]\w{3,}[.]\w{2,13}\z/i
 
   def friendly_updated_at
     updated_at.strftime("%A, %b %d")
