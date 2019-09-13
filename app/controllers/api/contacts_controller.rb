@@ -11,7 +11,7 @@ class Api::ContactsController < ApplicationController
     @contacts = Contact.all
 
     if search_term
-      @contacts = @contacts.where("first_name iLIKE ? OR last_name iLIKE ? OR middle_name iLIKE ?, OR email iLIKE ?"
+      @contacts = @contacts.where("first_name iLIKE ? OR last_name iLIKE ? OR middle_name iLIKE ?, OR email iLIKE ?",
                                   "%#{search_term}",
                                   "%#{search_term}",
                                   "%#{search_term}",
@@ -42,7 +42,7 @@ class Api::ContactsController < ApplicationController
     if @contact.save
       render 'show.json.jb'
     else 
-      render json: { errors: @contact.errors.full_messages } status: :unprocessable_entity
+      render json: { errors: @contact.errors.full_messages }, status: :unprocessable_entity
     end 
   end 
 
@@ -64,7 +64,7 @@ class Api::ContactsController < ApplicationController
     if @contact.save
     render 'show.json.jb'
     else
-      render json: { errors: @contact.errors.full_messages } status: :unprocessable_entity
+      render json: { errors: @contact.errors.full_messages }, status: :unprocessable_entity
     end 
   end
 
