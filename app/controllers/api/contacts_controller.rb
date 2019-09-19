@@ -5,11 +5,14 @@ class Api::ContactsController < ApplicationController
     middle_name_search = params[:middle_name]
     last_name_search = params[:last_name]
     email_search = params[:email]
+    group_filter = params[:group]
 
     search_term = params[:search]
 
-
-    if current_user
+    if current_user && group_filter
+      group = Group.find_by(name: group_filter)
+      @contacts = group.contacts.where(user_id: current_user.id)
+    elsif current_user
       @contacts = current_user.contacts
     else
       @contacts = Contact.all

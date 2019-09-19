@@ -1,5 +1,7 @@
 class Contact < ApplicationRecord
   belongs_to :user
+  has_many :group_contacts
+  has_many :contacts, through: :contact_group
 
   validates :first_name, presence: true 
   validates :last_name, presence: true 
@@ -8,6 +10,10 @@ class Contact < ApplicationRecord
 
   def friendly_updated_at
     updated_at.strftime("%A, %b %d")
+  end
+
+  def group_names
+    groups.map { |group| group.name }
   end
 
   def full_name

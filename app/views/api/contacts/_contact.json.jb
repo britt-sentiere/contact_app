@@ -7,10 +7,12 @@
   bio: contact.bio,
   email: contact.email,
   phone_number: contact.phone_number,
+  group_names: contact.group_names
   
   formatted: {
               friendly_updated_at: contact.friendly_updated_at,
               japan_number: contact.japan_number
               },
-  user_id: contact.user_id
+  user_id: contact.user_id,
+  groups: contact.groups
 }
